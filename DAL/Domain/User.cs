@@ -9,5 +9,6 @@ namespace DAL.Domain
 {
     public class User : IdentityUser
     {
+
     }
 }

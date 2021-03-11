@@ -8,7 +8,6 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
             ApplicationContext context = new ApplicationContext();
         }
     }
