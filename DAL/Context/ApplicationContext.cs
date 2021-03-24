@@ -26,7 +26,9 @@ namespace DAL.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@Environment.GetEnvironmentVariable("TestingDBConnectionString"));
+            optionsBuilder
+                .UseLazyLoadingProxies()
+                .UseSqlServer(@Environment.GetEnvironmentVariable("TestingDBConnectionString"));
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

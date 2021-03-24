@@ -9,10 +9,6 @@ namespace DAL.Domain
     public class Group : BaseEntity
     {
         [Required]
-        public virtual User Creator { get; set; }
-
-        [Required]
-        [ForeignKey("Creator")]
         public string CreatorId { get; set; }
 
         [Required]
