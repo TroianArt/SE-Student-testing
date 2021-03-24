@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Domain
 {
@@ -11,5 +12,7 @@ namespace DAL.Domain
         [ForeignKey("Question")]
         public long QuestionId { get; set; }
         public virtual Question Question { get; set; }
+
+        public virtual IEnumerable<User> Users { get; set; }
     }
 }

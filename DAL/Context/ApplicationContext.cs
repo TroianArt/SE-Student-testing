@@ -11,7 +11,6 @@ namespace DAL.Context
         public DbSet<Test> Tests { get; set; }
         public  DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
-        public DbSet<UserAnswer> UserAnswers { get; set; }
         public DbSet<UserTest> UserTest { get; set; }
 
         public ApplicationContext()
@@ -32,8 +31,6 @@ namespace DAL.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<UserAnswer>()
-                .HasKey(x => new { x.UserId, x.AnswerId});
         }
     }
 }
