@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace DAL.Domain
 {
-    public class BaseEntity
+    public class Role : IdentityRole
     {
-        public long Id { get; set; }
+
     }
 }

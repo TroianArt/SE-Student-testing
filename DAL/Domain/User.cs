@@ -9,6 +9,9 @@ namespace DAL.Domain
 {
     public class User : IdentityUser
     {
+        public virtual IEnumerable<UserTest> UserTests { get; set; }
+        public virtual IEnumerable<UserAnswer> UserAnswers { get; set; }
+
 
     }
 }
