@@ -19,6 +19,21 @@ namespace DAL.Migrations
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("AnswerUser", b =>
+                {
+                    b.Property<long>("AnswersId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("UsersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("AnswersId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("AnswerUser");
+                });
+
             modelBuilder.Entity("DAL.Domain.Answer", b =>
                 {
                     b.Property<long>("Id")
@@ -27,6 +42,7 @@ namespace DAL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AnswerText")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsCorrect")
@@ -49,16 +65,19 @@ namespace DAL.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CreatorId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateCreation")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -74,7 +93,11 @@ namespace DAL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("QuestionText")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("QuestionType")
+                        .HasColumnType("int");
 
                     b.Property<long>("TestId")
                         .HasColumnType("bigint");
@@ -103,6 +126,7 @@ namespace DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<TimeSpan>("Duration")
@@ -112,6 +136,7 @@ namespace DAL.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -191,19 +216,36 @@ namespace DAL.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("DAL.Domain.UserAnswer", b =>
+            modelBuilder.Entity("DAL.Domain.UserTest", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("AnswerId")
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("TestId")
                         .HasColumnType("bigint");
 
-                    b.HasKey("UserId", "AnswerId");
+                    b.Property<DateTime>("TimeEnd")
+                        .HasColumnType("datetime2");
 
-                    b.HasIndex("AnswerId");
+                    b.Property<DateTime>("TimeStart")
+                        .HasColumnType("datetime2");
 
-                    b.ToTable("UserAnswers");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TestId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserTest");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -337,6 +379,21 @@ namespace DAL.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("AnswerUser", b =>
+                {
+                    b.HasOne("DAL.Domain.Answer", null)
+                        .WithMany()
+                        .HasForeignKey("AnswersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DAL.Domain.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("DAL.Domain.Answer", b =>
                 {
                     b.HasOne("DAL.Domain.Question", "Question")
@@ -351,7 +408,7 @@ namespace DAL.Migrations
             modelBuilder.Entity("DAL.Domain.Question", b =>
                 {
                     b.HasOne("DAL.Domain.Test", "Test")
-                        .WithMany()
+                        .WithMany("Questions")
                         .HasForeignKey("TestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -377,21 +434,21 @@ namespace DAL.Migrations
                         .HasForeignKey("GroupId");
                 });
 
-            modelBuilder.Entity("DAL.Domain.UserAnswer", b =>
+            modelBuilder.Entity("DAL.Domain.UserTest", b =>
                 {
-                    b.HasOne("DAL.Domain.Answer", "Answer")
+                    b.HasOne("DAL.Domain.Test", "Test")
                         .WithMany()
-                        .HasForeignKey("AnswerId")
+                        .HasForeignKey("TestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Domain.User", "User")
-                        .WithMany()
+                        .WithMany("UserTests")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Answer");
+                    b.Navigation("Test");
 
                     b.Navigation("User");
                 });
@@ -457,6 +514,16 @@ namespace DAL.Migrations
             modelBuilder.Entity("DAL.Domain.Question", b =>
                 {
                     b.Navigation("Answers");
+                });
+
+            modelBuilder.Entity("DAL.Domain.Test", b =>
+                {
+                    b.Navigation("Questions");
+                });
+
+            modelBuilder.Entity("DAL.Domain.User", b =>
+                {
+                    b.Navigation("UserTests");
                 });
 #pragma warning restore 612, 618
         }
