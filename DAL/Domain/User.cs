@@ -11,5 +11,6 @@ namespace DAL.Domain
     {
         public virtual IEnumerable<UserTest> UserTests { get; set; }
         public virtual IEnumerable<Answer> Answers { get; set; }
+        public virtual IEnumerable<Group> Groups { get; set; }
     }
 }

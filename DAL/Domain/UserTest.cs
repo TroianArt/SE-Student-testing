@@ -6,7 +6,6 @@ namespace DAL.Domain
 {
     public class UserTest : BaseEntity
     {
-        [Required]
         public DateTime TimeStart { get; set; }
         public DateTime TimeEnd { get; set; }
 
