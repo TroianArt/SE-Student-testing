@@ -13,7 +13,7 @@ namespace BLL.DTO
         public DateTime DateValid { get; set; }
         public TimeSpan Duration { get; set; }
         public long GroupId { get; set; }
-        public GroupDTO Group { get; set; }
+        public GroupDto Group { get; set; }
         public IEnumerable<QuestionDto> Questions { get; set; }
     }
 }

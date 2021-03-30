@@ -29,7 +29,7 @@ namespace DAL.Repositories
         }
 
         /// <summary>
-        /// Constructor with paramethr
+        /// Constructor with parameter
         /// </summary>
         /// <param name="context">context</param>
         /// <param name="userManager"></param>

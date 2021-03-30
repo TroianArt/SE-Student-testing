@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using BLL.DTO;
 using DAL.Domain;
 using Microsoft.AspNetCore.Identity;
 
@@ -6,10 +7,12 @@ namespace BLL.Interfaces
 {
     public interface IUserService
     {
-        Task<IdentityResult> SignUp(User user);
+        Task<IdentityResult> SignUpAsync(UserDto user);
 
-        Task SignIn(User user, bool isPersistant);
+        public Task<SignInResult> SignInAsync(UserDto user, string password, bool isPersistant);
 
-        Task<IdentityResult> ChangePassword(User user, string currentPassword, string newPassword);
+        Task<IdentityResult> ChangePasswordAsync(UserDto user, string currentPassword, string newPassword);
+
+        Task SignOutAsync();
     }
 }

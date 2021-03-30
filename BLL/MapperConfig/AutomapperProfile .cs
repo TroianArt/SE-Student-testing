@@ -12,7 +12,7 @@ namespace BLL.MapperConfig
             CreateMap<Answer, AnswerDto>()
                 .ReverseMap();
 
-            CreateMap<Group, GroupDTO>()
+            CreateMap<Group, GroupDto>()
                 .ReverseMap();
 
             CreateMap<Question, QuestionDto>()

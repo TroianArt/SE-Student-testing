@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BLL.DTO
 {
-    public class GroupDTO
+    public class GroupDto
     {
         public int Id { get; set; }
         public string CreatorId { get; set; }

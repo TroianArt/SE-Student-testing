@@ -30,9 +30,10 @@ namespace DAL.Context
                 .UseLazyLoadingProxies()
                 .UseSqlServer(@Environment.GetEnvironmentVariable("TestingDBConnectionString"));
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(modelBuilder);
+            if (builder == null) throw new ArgumentNullException(nameof(builder));
+            base.OnModelCreating(builder);
         }
     }
 }
