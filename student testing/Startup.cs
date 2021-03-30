@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BLL.MapperConfig;
 using DAL.Context;
 using DAL.Domain;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,7 @@ namespace student_testing
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(cfg => cfg.AddProfile(new AutomapperProfile()));
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
