@@ -44,7 +44,7 @@ namespace BLL.Services
             if (userEntity.Result != null)
             {
                 var result = await unitOfWork.SignInManager.PasswordSignInAsync(userEntity.Result, password, isPersistant, false);
-                return SignInResult.Failed;
+                return result;
             }
             return null;
         }
