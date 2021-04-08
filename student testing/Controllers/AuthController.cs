@@ -19,12 +19,6 @@ namespace student_testing.Controllers
         public AuthController(IUserService service)
         {
             userService = service;
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Information()
-                .WriteTo.File("log.txt",
-                    rollingInterval: RollingInterval.Day,
-                    rollOnFileSizeLimit: true)
-                .CreateLogger();
         }
 
         [HttpGet]

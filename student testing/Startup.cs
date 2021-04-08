@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using DAL.Repositories;
 using BLL.Interfaces;
 using BLL.Services;
+using Serilog;
 
 namespace student_testing
 {
@@ -43,6 +44,12 @@ namespace student_testing
             services.AddScoped<IGroupService, GroupService>();
 
             services.AddControllersWithViews();
+           Log.Logger = new LoggerConfiguration()
+               .MinimumLevel.Information()
+               .WriteTo.File("log.txt",
+                   rollingInterval: RollingInterval.Day,
+                   rollOnFileSizeLimit: true)
+               .CreateLogger();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -71,6 +78,7 @@ namespace student_testing
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+           
         }
     }
 }
