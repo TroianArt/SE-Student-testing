@@ -2,6 +2,8 @@
 using DAL.Domain;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using DAL.DBSeed;
+using Microsoft.AspNetCore.Identity;
 
 namespace DAL.Context
 {
@@ -12,6 +14,7 @@ namespace DAL.Context
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<UserTest> UserTest { get; set; }
+        public DbSet<Role> Role { get; set; }
 
         public ApplicationContext()
         {
@@ -34,6 +37,11 @@ namespace DAL.Context
         {
             if (builder == null) throw new ArgumentNullException(nameof(builder));
             base.OnModelCreating(builder);
+        }
+
+        private void SeedData(ModelBuilder builder)
+        {
+            RolesSeeder.SeedData(builder);
         }
     }
 }

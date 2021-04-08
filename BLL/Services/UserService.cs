@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using AutoMapper;
 using BLL.DTO;
+using System.Security.Claims;
+using System;
 
 namespace BLL.Services
 {
@@ -19,16 +21,32 @@ namespace BLL.Services
             this.mapper = mapper;
         }
 
-        public Task<IdentityResult> SignUpAsync(UserDto user)
+        public async Task<IdentityResult> SignUpAsync(UserDto user, string password)
         {
             var userEntity = mapper.Map<User>(user);
-            return unitOfWork.UserManager.CreateAsync(userEntity);
+            userEntity.Id = Guid.NewGuid().ToString();
+            unitOfWork.UserManager.AddToRoleAsync(userEntity, "Student");
+            var result = await unitOfWork.UserManager.CreateAsync(userEntity, password);
+            return result;
         }
 
-        public Task<SignInResult> SignInAsync(UserDto user, string password, bool isPersistant)
+        public async Task<IdentityResult> AddRole(UserDto user, string role)
         {
-            var userEntity = mapper.Map<User>(user);
-            return unitOfWork.SignInManager.PasswordSignInAsync(userEntity,password,isPersistant,false);
+            var userEntity = unitOfWork.UserManager.FindByEmailAsync(user.Email);
+            var result = await unitOfWork.UserManager.AddToRoleAsync(userEntity.Result, role);
+            return result;
+        }
+
+        public async Task<SignInResult> SignInAsync(UserDto user, string password, bool isPersistant)
+        {
+            //var userEntity = mapper.Map<User>(user);
+            var userEntity = unitOfWork.UserManager.FindByEmailAsync(user.Email);
+            if (userEntity.Result != null)
+            {
+                var result = await unitOfWork.SignInManager.PasswordSignInAsync(userEntity.Result, password, isPersistant, false);
+                return SignInResult.Failed;
+            }
+            return null;
         }
 
         public Task<IdentityResult> ChangePasswordAsync(UserDto user, string currentPassword, string newPassword)

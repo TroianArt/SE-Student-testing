@@ -11,7 +11,11 @@ using System.Threading.Tasks;
 using BLL.MapperConfig;
 using DAL.Context;
 using DAL.Domain;
+using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using DAL.Repositories;
+using BLL.Interfaces;
+using BLL.Services;
 
 namespace student_testing
 {
@@ -33,6 +37,10 @@ namespace student_testing
 
             services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<ApplicationContext>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IGroupService, GroupService>();
 
             services.AddControllersWithViews();
         }
