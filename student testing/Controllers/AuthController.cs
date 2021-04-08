@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BLL.Interfaces;
 using BLL.Services;
+using Serilog;
 
 namespace student_testing.Controllers
 {
@@ -18,6 +19,12 @@ namespace student_testing.Controllers
         public AuthController(IUserService service)
         {
             userService = service;
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Information()
+                .WriteTo.File("log.txt",
+                    rollingInterval: RollingInterval.Day,
+                    rollOnFileSizeLimit: true)
+                .CreateLogger();
         }
 
         [HttpGet]
@@ -33,6 +40,7 @@ namespace student_testing.Controllers
             if (ModelState.IsValid)
             {
                 UserDto user = new UserDto { Email = model.Email };
+                Log.Logger.Information("logged in user with the email " + model.Email);
                 var result = await userService.SignInAsync(user, model.Password, true);
                 if (result != null && result.Succeeded)
                 {
