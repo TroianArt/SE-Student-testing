@@ -10,6 +10,7 @@ using BLL.Interfaces;
 using BLL.Services;
 using Serilog;
 
+
 namespace student_testing.Controllers
 {
     public class AuthController : Controller
@@ -34,12 +35,13 @@ namespace student_testing.Controllers
             if (ModelState.IsValid)
             {
                 UserDto user = new UserDto { Email = model.Email };
-                Log.Logger.Information("logged in user with the email " + model.Email);
                 var result = await userService.SignInAsync(user, model.Password, true);
                 if (result != null && result.Succeeded)
                 {
+                    Log.Logger.Verbose("Logged in user {@userdto} ", user);
                     return Redirect("/Home/Privacy");
                 }
+                else Log.Logger.Warning("Did not log in user {@userdto} ", user);
                 return Redirect("/Home/Index");
             }
             return View();
@@ -64,9 +66,12 @@ namespace student_testing.Controllers
                     //result = await userService.AddRole(user, "Student");
                     if (result.Succeeded)
                     {
+                        Log.Logger.Verbose("Registered user {@userdto} ", user);
                         return Redirect("/Auth/Login");
                     }
+
                 }
+                else Log.Logger.Warning("Did not register user {@userdto} ", user);
                 return Redirect("/Home/Index");
             }
             return View();

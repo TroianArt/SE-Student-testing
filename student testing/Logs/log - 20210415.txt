@@ -1,0 +1,3 @@
+2021-04-15 01:52:03.885 +03:00 [VRB] Registered user {"Id":null,"UserName":"Severyn","Email":"severyn@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
+2021-04-15 01:55:49.543 +03:00 [WRN] Did not register user {"Id":null,"UserName":"Artur2","Email":"artur2@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
+2021-04-15 01:56:03.613 +03:00 [VRB] Registered user {"Id":null,"UserName":"Artur2","Email":"artur2@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 

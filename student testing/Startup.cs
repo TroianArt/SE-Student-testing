@@ -45,11 +45,14 @@ namespace student_testing
 
             services.AddControllersWithViews();
            Log.Logger = new LoggerConfiguration()
-               .MinimumLevel.Information()
-               .WriteTo.File("log.txt",
+               .MinimumLevel.Verbose()
+
+               .WriteTo.File("Logs/log - .txt",
                    rollingInterval: RollingInterval.Day,
                    rollOnFileSizeLimit: true)
+               .WriteTo.Seq("http://localhost:5341")
                .CreateLogger();
+
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
