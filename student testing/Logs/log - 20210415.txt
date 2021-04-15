@@ -1,3 +1,6 @@
 2021-04-15 01:52:03.885 +03:00 [VRB] Registered user {"Id":null,"UserName":"Severyn","Email":"severyn@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
 2021-04-15 01:55:49.543 +03:00 [WRN] Did not register user {"Id":null,"UserName":"Artur2","Email":"artur2@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
 2021-04-15 01:56:03.613 +03:00 [VRB] Registered user {"Id":null,"UserName":"Artur2","Email":"artur2@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
+2021-04-15 13:45:37.912 +03:00 [VRB] App starting up
+2021-04-15 13:46:24.252 +03:00 [WRN] Did not register user {"Id":null,"UserName":"User1","Email":"user1@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
+2021-04-15 13:46:39.527 +03:00 [VRB] Registered user {"Id":null,"UserName":"User2","Email":"user2@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
