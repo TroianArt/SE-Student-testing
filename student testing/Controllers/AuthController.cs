@@ -1,15 +1,14 @@
-﻿using BLL.DTO;
-using DAL.Domain;
-using Microsoft.AspNetCore.Mvc;
-using student_testing.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BLL.DTO;
 using BLL.Interfaces;
 using BLL.Services;
+using DAL.Domain;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
-
+using student_testing.Models;
 
 namespace student_testing.Controllers
 {
@@ -19,62 +18,72 @@ namespace student_testing.Controllers
 
         public AuthController(IUserService service)
         {
-            userService = service;
+            this.userService = service;
         }
 
         [HttpGet]
         public IActionResult Login()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
         public async Task<ActionResult> Login(LoginModel model)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 UserDto user = new UserDto { Email = model.Email };
-                var result = await userService.SignInAsync(user, model.Password, true);
-                if (result != null && result.Succeeded)
+                var result = await this.userService.SignInAsync(user, model.Password, true);
+                if (result?.Succeeded == true)
                 {
                     Log.Logger.Verbose("Logged in user {@userdto} ", user);
-                    return Redirect("/Home/Privacy");
+                    return this.Redirect("/Home/Privacy");
                 }
-                else Log.Logger.Warning("Did not log in user {@userdto} ", user);
-                return Redirect("/Home/Index");
+                else
+                {
+                    Log.Logger.Warning("Did not log in user {@userdto} ", user);
+                }
+
+                return this.Redirect("/Home/Index");
             }
-            return View();
+
+            return this.View();
         }
 
         [HttpGet]
         public IActionResult SignUp()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SignUp(SignUpModel model)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 UserDto user = new UserDto { UserName = model.UserName, Email = model.Email };
-                var result = await userService.SignUpAsync(user, model.Password);
+                var result = await this.userService.SignUpAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    result = await userService.AddRole(user, "Student");
+                    result = await this.userService.AddRole(user, "Student");
                     if (result.Succeeded)
                     {
                         Log.Logger.Verbose("Registered user {@userdto} ", user);
-                        return Redirect("/Auth/Login");
+                        return this.Redirect("/Auth/Login");
                     }
 
                 }
-                else Log.Logger.Warning("Did not register user {@userdto} ", user);
-                return Redirect("/Home/Index");
+                else
+                {
+                    Log.Logger.Warning("Did not register user {@userdto} ", user);
+                }
+
+                return this.Redirect("/Home/Index");
             }
-            return View();
+
+            return this.View();
         }
     }
 }
