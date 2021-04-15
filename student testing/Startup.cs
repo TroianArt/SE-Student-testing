@@ -44,12 +44,7 @@ namespace student_testing
             services.AddScoped<IGroupService, GroupService>();
 
             services.AddControllersWithViews();
-           Log.Logger = new LoggerConfiguration()
-               .MinimumLevel.Information()
-               .WriteTo.File("log.txt",
-                   rollingInterval: RollingInterval.Day,
-                   rollOnFileSizeLimit: true)
-               .CreateLogger();
+
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
