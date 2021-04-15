@@ -7,6 +7,7 @@ using AutoMapper;
 using BLL.DTO;
 using System.Security.Claims;
 using System;
+using Serilog;
 
 namespace BLL.Services
 {
@@ -29,7 +30,7 @@ namespace BLL.Services
             
             var result = await unitOfWork.UserManager.CreateAsync(userEntity, password);
             //await unitOfWork.UserManager.AddToRoleAsync(userEntity, "Student"); 
-
+            Log.Logger.Verbose("Sign up user {@userdto} ", user);
             return result;
         }
 
@@ -39,6 +40,7 @@ namespace BLL.Services
             if (userEntity == null)
             {
                 //return IdentityResult.Failed;
+                Log.Logger.Warning("Not found user with email: {email} ", user.Email);
                 return null;
             }
 
@@ -49,6 +51,7 @@ namespace BLL.Services
             }
 
             var result = await unitOfWork.UserManager.AddToRoleAsync(userEntity.Result, role);
+            Log.Logger.Verbose("Add role: {role} , User {@userdto} ", user,role);
             return result;
         }
 
@@ -59,8 +62,10 @@ namespace BLL.Services
             if (userEntity.Result != null)
             {
                 var result = await unitOfWork.SignInManager.PasswordSignInAsync(userEntity.Result, password, isPersistant, false);
+                Log.Logger.Verbose("Signed in user {@user} ", user);
                 return result;
             }
+            else Log.Logger.Warning("already exists user with email: {email} ", user.Email);
             return null;
         }
 
@@ -72,6 +77,7 @@ namespace BLL.Services
 
         public Task SignOutAsync()
         {
+            Log.Logger.Verbose("Sign out");
             return unitOfWork.SignInManager.SignOutAsync();
         }
     }
