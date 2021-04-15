@@ -37,6 +37,8 @@ namespace DAL.Context
         {
             if (builder == null) throw new ArgumentNullException(nameof(builder));
             base.OnModelCreating(builder);
+
+            SeedData(builder);
         }
 
         private void SeedData(ModelBuilder builder)

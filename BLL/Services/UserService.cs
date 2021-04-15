@@ -12,6 +12,7 @@ namespace BLL.Services
 {
     public class UserService : IUserService
     {
+        private string[] roles = {"Student", "Teacher", "Admin"};
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
@@ -25,14 +26,28 @@ namespace BLL.Services
         {
             var userEntity = mapper.Map<User>(user);
             userEntity.Id = Guid.NewGuid().ToString();
-            unitOfWork.UserManager.AddToRoleAsync(userEntity, "Student");
+            
             var result = await unitOfWork.UserManager.CreateAsync(userEntity, password);
+            //await unitOfWork.UserManager.AddToRoleAsync(userEntity, "Student"); 
+
             return result;
         }
 
         public async Task<IdentityResult> AddRole(UserDto user, string role)
         {
             var userEntity = unitOfWork.UserManager.FindByEmailAsync(user.Email);
+            if (userEntity == null)
+            {
+                //return IdentityResult.Failed;
+                return null;
+            }
+
+            bool roleExists = await unitOfWork.RoleManager.RoleExistsAsync(role);
+            if (!roleExists && Array.Exists(roles, element => element == role))
+            {
+                await unitOfWork.RoleManager.CreateAsync(new Role(role));
+            }
+
             var result = await unitOfWork.UserManager.AddToRoleAsync(userEntity.Result, role);
             return result;
         }
