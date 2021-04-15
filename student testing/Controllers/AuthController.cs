@@ -63,7 +63,7 @@ namespace student_testing.Controllers
                 var result = await userService.SignUpAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    //result = await userService.AddRole(user, "Student");
+                    result = await userService.AddRole(user, "Student");
                     if (result.Succeeded)
                     {
                         Log.Logger.Verbose("Registered user {@userdto} ", user);
