@@ -15,7 +15,7 @@ namespace student_testing.Controllers
         [Authorize]
         public IActionResult Index() // returns all user groups
         {
-            return View();
+            return View(new List<GroupViewModel>());
         }
 
         [HttpPost]

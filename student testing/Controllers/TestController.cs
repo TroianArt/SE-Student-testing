@@ -14,7 +14,7 @@ namespace student_testing.Controllers
         [Authorize]
         public IActionResult Index()//get user tests
         {
-            return View();//IEnumerable<Test>
+            return View(new List<TestViewModel>());//IEnumerable<Test>
         }
 
         [HttpPost]
