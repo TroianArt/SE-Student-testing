@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics.Eventing.Reader;
 using BLL.DTO;
 using BLL.Interfaces;
-using BLL.Services;
-using DAL.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using student_testing.Models;
+using System.Threading.Tasks;
+using student_testing.Models.Auth;
 
 namespace student_testing.Controllers
 {
@@ -68,11 +65,15 @@ namespace student_testing.Controllers
                 if (result.Succeeded)
                 {
                     result = await this.userService.AddRole(user, "Student");
+
                     if (result.Succeeded)
                     {
                         Log.Logger.Verbose("Registered user {@userdto} ", user);
                         return this.Redirect("/Auth/Login");
                     }
+
+                    return await Login(new LoginModel {Email = model.Email, Password = model.Password});
+
 
                 }
                 else

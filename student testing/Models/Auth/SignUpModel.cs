@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace student_testing.Models
+namespace student_testing.Models.Auth
 {
     public class SignUpModel
     {
