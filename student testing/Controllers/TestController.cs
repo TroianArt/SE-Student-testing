@@ -24,9 +24,23 @@ namespace student_testing.Controllers
             return View();
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Create()//create test
+        {
+            return View();
+        }
+
         [HttpPut]
         [Authorize(Roles = "Admin")]
         public IActionResult Update(UpdateTestViewModel model)//get user tests
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Update()//get user tests
         {
             return View();
         }
@@ -41,6 +55,13 @@ namespace student_testing.Controllers
         [HttpPost]
         [Authorize]
         public IActionResult Complete(int id)//get user tests
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult Details(int id)//get user tests
         {
             return View();
         }

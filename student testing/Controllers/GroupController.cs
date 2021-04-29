@@ -25,9 +25,23 @@ namespace student_testing.Controllers
             return View();
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Create() //create new group
+        {
+            return View();
+        }
+
         [HttpPut]
         [Authorize(Roles = "Admin")]
         public IActionResult Update(UpdateGroupViewModel model) //update existed group
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Update() //update existed group
         {
             return View();
         }
@@ -39,9 +53,23 @@ namespace student_testing.Controllers
             return View();
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult AddStudent() //add student to group
+        {
+            return View();
+        }
+
         [HttpDelete]
         [Authorize(Roles = "Admin")]
-        public IActionResult Delete(DeleteGroupViewModel model) //delete student from group
+        public IActionResult Delete(int id) //delete student from group
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete() //delete student from group
         {
             return View();
         }
