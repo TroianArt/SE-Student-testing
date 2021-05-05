@@ -15,7 +15,7 @@ namespace student_testing.Models.Auth
         public string UserName { get; set; }
 
         [Required]
-        [RegularExpression(@"^(?=.*[a - z])(?=.*[A - Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,}$", ErrorMessage = "Special Characters are not allowed.")]
+        //[RegularExpression(@"^(?=.*[a - z])(?=.*[A - Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,}$", ErrorMessage = "Special Characters are not allowed.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
         

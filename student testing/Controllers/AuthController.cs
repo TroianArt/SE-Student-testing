@@ -86,5 +86,12 @@ namespace student_testing.Controllers
 
             return this.View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> LogOutAsync()
+        {
+            await this.userService.SignOutAsync();
+            return this.Redirect("/Home/Index");
+        }
     }
 }

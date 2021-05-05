@@ -1,11 +1,14 @@
 ﻿@{
-    ViewData["Title"] = "Your Account";
+    ViewData["Title"] = "Account settings";
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Username: </p>
-<p>Email: </p>
-<p><input type="text" id="currentpassword" name="currentpassword" placeholder="current password"></p>
-<p> <input type="text" id="newpassword" name="newepassword" placeholder="new password"></p>
-<p><input type="text" id="confirmpassword" name="confirmpassword" placeholder="confirm password"></p>
-<p><input type="submit" value="Submit"></p>
+@using (Html.BeginForm())
+{
+    <p>Username: </p>
+    <p>Email: </p>
+    <p><input type="text" id="currentpassword" name="currentpassword" placeholder="current password"></p>
+    <p> <input type="text" id="newpassword" name="newepassword" placeholder="new password"></p>
+    <p><input type="text" id="confirmpassword" name="confirmpassword" placeholder="confirm password"></p>
+    <p><input type="submit" value="Submit"></p>
+}

@@ -24,13 +24,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Settings" asp-action="Account">Your Account</a>
-                        </li>
-
                     </ul>
                 </div>
-                @Html.ActionLink("Sign Out", "Login", "Auth")
+                @*@if (User.Identity.IsAuthenticated)
+                {
+                    //<li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Settings" asp-action="Account">Your Account</a>
+                    //</li>
+                }
+                @Html.ActionLink("Sign Out", "Login", "Auth")*@
+                @Html.Partial("_UserPartial")
             </div>
         </nav>
     </header>
