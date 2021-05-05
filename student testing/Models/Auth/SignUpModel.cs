@@ -15,10 +15,12 @@ namespace student_testing.Models.Auth
         public string UserName { get; set; }
 
         [Required]
+        [RegularExpression(@"^(?=.*[a - z])(?=.*[A - Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,}$", ErrorMessage = "Special Characters are not allowed.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
+        
         [Required]
+        [Compare("Password", ErrorMessage = "Confirm password doesn't match, Type again !")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
     }

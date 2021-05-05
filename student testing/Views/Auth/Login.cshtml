@@ -16,17 +16,24 @@
 {
     @Html.AntiForgeryToken()
 
-    <div>
-        @Html.ValidationSummary()
-        <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
-        <p>
-            <label>Email</label><br />
-            @Html.EditorFor(x => x.Email)
-        </p>
-        <p>
-            <label>Password</label><br />
-            @Html.EditorFor(x => x.Password)
-        </p>
-        <p><button type="submit">Sign In</button></p>
-    </div>
+<div>
+    @Html.ValidationSummary()
+    <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+    <p>
+        <label>Email</label><br />
+        @Html.EditorFor(x => x.Email)
+    </p>
+    <p>
+        <label>Password</label><br />
+        @Html.EditorFor(x => x.Password)
+    </p>
+    <p><button type="submit">Sign In</button></p>
+    <input type="checkbox"
+           id="inlineFormCheck" />
+    <label for="inlineFormCheck">
+        Remember me
+    </label>
+    @Html.ActionLink("Don't have an account, create one.", "SignUp", "Auth")
+   
+</div>
 }

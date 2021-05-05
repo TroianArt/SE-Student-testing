@@ -25,14 +25,12 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Account">Your Account</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Settings" asp-action="Account">Your Account</a>
                         </li>
-                       
+
                     </ul>
                 </div>
-                <div id="formFooter">
-                    <a class="underlineHover" href="Auth/Login">Sign Out</a>
-                </div>
+                @Html.ActionLink("Sign Out", "Login", "Auth")
             </div>
         </nav>
     </header>

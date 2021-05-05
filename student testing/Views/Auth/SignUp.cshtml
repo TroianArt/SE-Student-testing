@@ -5,7 +5,7 @@
 }
 
 
-@model SignUpModel
+@model student_testing.Models.Auth.SignUpModel
 
 @{
     ViewBag.Title = "Sign Up";
@@ -37,5 +37,7 @@
         @Html.EditorFor(x => x.ConfirmPassword)
     </p>
     <p><button type="submit">Sign Up</button></p>
+    @Html.ActionLink("Have an account? Log In.", "Login", "Auth")
+    
 </div>
 }
