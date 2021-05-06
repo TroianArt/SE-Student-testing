@@ -19,5 +19,6 @@ namespace student_testing.Models.Settings
         [Required]
         [DataType(DataType.Password)]
         public string confirmPassword { get; set; }
+
     }
 }

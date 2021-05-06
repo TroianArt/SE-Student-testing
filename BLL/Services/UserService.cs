@@ -58,10 +58,10 @@ namespace BLL.Services
         public async Task<SignInResult> SignInAsync(UserDto user, string password, bool isPersistant)
         {
             //var userEntity = mapper.Map<User>(user);
-            var userEntity = unitOfWork.UserManager.FindByEmailAsync(user.Email);
-            if (userEntity.Result != null)
+            var userEntity =await unitOfWork.UserManager.FindByEmailAsync(user.Email);
+            if (userEntity != null)
             {
-                var result = await unitOfWork.SignInManager.PasswordSignInAsync(userEntity.Result, password, isPersistant, false);
+                var result = await unitOfWork.SignInManager.PasswordSignInAsync(userEntity, password, isPersistant, false);
                 Log.Logger.Verbose("Signed in user {@user} ", user);
                 return result;
             }

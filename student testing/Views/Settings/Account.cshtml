@@ -5,10 +5,24 @@
 
 @using (Html.BeginForm())
 {
-    <p>Username: </p>
-    <p>Email: </p>
-    <p><input type="text" id="currentpassword" name="currentpassword" placeholder="current password"></p>
-    <p> <input type="text" id="newpassword" name="newepassword" placeholder="new password"></p>
-    <p><input type="text" id="confirmpassword" name="confirmpassword" placeholder="confirm password"></p>
+    @model student_testing.Models.Settings.SettingsModel
+    <p>Username: @User.Identity.Name</p>
+    @*<p>Email: </p>*@
+    <p>
+        <label>Old Password</label><br />
+        @Html.EditorFor(x => x.oldPassword)
+    </p>
+    <p>
+        <label>New Password</label><br />
+        @Html.EditorFor(x => x.newPassword)
+    </p>
+    <p>
+        <label>Confirm Password</label><br />
+        @Html.EditorFor(x => x.confirmPassword)
+    </p>
+    
+    @*<p><input type="text" id="currentpassword" name="currentpassword" placeholder="current password"></p>
+        <p> <input type="text" id="newpassword" name="newepassword" placeholder="new password"></p>
+        <p><input type="text" id="confirmpassword" name="confirmpassword" placeholder="confirm password"></p>*@
     <p><input type="submit" value="Submit"></p>
 }
