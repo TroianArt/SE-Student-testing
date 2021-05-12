@@ -69,10 +69,11 @@ namespace BLL.Services
             return null;
         }
 
-        public Task<IdentityResult> ChangePasswordAsync(UserDto user, string currentPassword, string newPassword)
+        public async Task<IdentityResult> ChangePasswordAsync(string email, string currentPassword, string newPassword)
         {
-            var userEntity = mapper.Map<User>(user);
-            return unitOfWork.UserManager.ChangePasswordAsync(userEntity, currentPassword, newPassword);
+            var userEntity = await unitOfWork.UserManager.FindByEmailAsync(email);
+            var result = await unitOfWork.UserManager.ChangePasswordAsync(userEntity, currentPassword, newPassword);
+            return result;
         }
 
         public Task SignOutAsync()
