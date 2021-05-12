@@ -11,7 +11,7 @@ namespace BLL.Interfaces
 
         public Task<SignInResult> SignInAsync(UserDto user, string password, bool isPersistant);
 
-        Task<IdentityResult> ChangePasswordAsync(UserDto user, string currentPassword, string newPassword);
+        Task<IdentityResult> ChangePasswordAsync(string email, string currentPassword, string newPassword);
 
         Task SignOutAsync();
 

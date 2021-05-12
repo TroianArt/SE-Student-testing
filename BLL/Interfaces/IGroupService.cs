@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using BLL.DTO;
 using DAL.Domain;
 
@@ -11,5 +13,6 @@ namespace BLL.Interfaces
         Task RemoveStudent(GroupDto group, string studentEmail);
         Task RenameGroup(GroupDto group);
         Task DeleteGroup(GroupDto group);
+        Task<IEnumerable<UserDto>> GetGroupStudents(GroupDto group);
     }
 }
