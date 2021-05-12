@@ -102,5 +102,12 @@ namespace BLL.Services
             unitOfWork.Repository<Group>().Delete(groupEntity);
             await unitOfWork.SaveAsync();
         }
+
+        public async Task<IEnumerable<UserDto>> GetGroupStudents(GroupDto group)
+        {
+            var groupEntity = unitOfWork.Repository<Group>().Get(group.Id);
+
+            return mapper.Map<IEnumerable<UserDto>>(groupEntity.Users);
+        }
     }
 }
