@@ -1,82 +1,82 @@
-﻿<!DOCTYPE html>
+﻿@model student_testing.Models.MainPage.MainModel
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-* {
-  box-sizing: border-box;
-}
+        * {
+            box-sizing: border-box;
+        }
 
-/* Create two unequal columns that floats next to each other */
-.column {
-  float: left;
-  padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
-}
+        /* Create two unequal columns that floats next to each other */
+        .column {
+            float: left;
+            padding: 10px;
+            height: 300px; /* Should be removed. Only for demonstration */
+        }
 
-.left {
-  width: 25%;
-}
+        .left {
+            width: 25%;
+        }
 
-.right {
-  width: 75%;
-}
+        .right {
+            width: 75%;
+        }
 
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-body {font-family: "Lato", sans-serif;}
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
 
-ul.tab {
+        body {
+            font-family: "Lato", sans-serif;
+        }
 
-    text-align: center;
+        ul.tab {
+            text-align: center;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
 
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-}
+            /* Float the list items side by side */
+            ul.tab li {
+                float: left;
+            }
 
-/* Float the list items side by side */
-ul.tab li {float: left;}
+                /* Style the links inside the list items */
+                ul.tab li a {
+                    display: inline-block;
+                    color: black;
+                    text-align: center;
+                    padding: 14px 16px;
+                    text-decoration: none;
+                    transition: 0.3s;
+                    font-size: 17px;
+                }
 
-/* Style the links inside the list items */
-ul.tab li a {
+                    /* Change background color of links on hover */
+                    ul.tab li a:hover {
+                        background-color: #ddd;
+                    }
 
-    display: inline-block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    transition: 0.3s;
-    font-size: 17px;
-}
+                    /* Create an active/current tablink class */
+                    ul.tab li a:focus, .active {
+                        background-color: #ccc;
+                    }
 
-/* Change background color of links on hover */
-ul.tab li a:hover {
-    background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-ul.tab li a:focus, .active {
-    background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-
-    display: none;
-    padding: 6px 12px;
-    -webkit-animation: fadeEffect 1s;
-    animation: fadeEffect 1s;
-}
-
-
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            -webkit-animation: fadeEffect 1s;
+            animation: fadeEffect 1s;
+        }
     </style>
     </style>
 </head>
@@ -90,21 +90,22 @@ ul.tab li a:focus, .active {
 
                 <tr>
                     <th>Your Classes</th>
-                <tr>
-                    <td>Alfreds Futterkiste</td>
-                </tr>
-                <tr>
-                    <td>Maria Anders</td>
-                </tr>
-                <tr>
-                    <td>Germany</td>
+                    @if (Model?.Classes != null)
+                    {
+                        @foreach (var d in Model.Classes ?? new List<DAL.Domain.Group>())
+                        {
+                        <tr>
+                            <td>@d.Name</td>
 
 
-                </tr>
-                </tr>
+                        </tr>
+
+                    }
+                    }
+                    </tr>
 
 
-            </table>
+                </table>
         </div>
         <div class="column right" style="background-color:#bbb;">
             <ul class="tab">
@@ -147,6 +148,7 @@ ul.tab li a:focus, .active {
 
 
                         </tr>
+                        
 
 
                     </table>
@@ -179,7 +181,7 @@ ul.tab li a:focus, .active {
 
 
                     <table>
-                        <div style="display:inline-block">
+                        
                             <tr>
                                 <th>Test</th>
 
@@ -216,7 +218,7 @@ ul.tab li a:focus, .active {
 
 
                     <table>
-                        <div style="display:inline-block">
+                        
                             <tr>
                                 <th>Test</th>
                                 <th>Grade</th>
@@ -231,20 +233,20 @@ ul.tab li a:focus, .active {
         </div>
     </div>
     <script>
-document.getElementsByClassName('tablinks')[0].click()
-function openCity(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
+        document.getElementsByClassName('tablinks')[0].click()
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
     </script>
     </div>
 
