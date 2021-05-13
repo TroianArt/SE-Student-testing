@@ -47,7 +47,6 @@
 
   <ItemGroup>
     <Folder Include="Logs\" />
-    <Folder Include="Models\Admin\" />
   </ItemGroup>
 
 </Project>
