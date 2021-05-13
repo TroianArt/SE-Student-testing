@@ -1,0 +1,25 @@
+﻿@model student_testing.Models.Group.CreateGroupViewModel
+
+@{
+    ViewBag.Title = "Create group";
+}
+
+<h2>Create group</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+        @Html.ValidationSummary()
+        <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+        <p>
+            <label>Name</label><br />
+            @Html.EditorFor(x => x.Name)
+        </p>
+        <p>
+            <label>Description</label><br />
+            @Html.EditorFor(x => x.Description)
+        </p>
+        <p><button type="submit">Create</button></p>
+    </div>
+}
