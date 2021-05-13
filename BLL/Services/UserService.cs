@@ -39,7 +39,6 @@ namespace BLL.Services
             var userEntity = unitOfWork.UserManager.FindByEmailAsync(user.Email);
             if (userEntity == null)
             {
-                //return IdentityResult.Failed;
                 Log.Logger.Warning("Not found user with email: {email} ", user.Email);
                 return null;
             }
