@@ -15,6 +15,7 @@ namespace student_testing.Controllers
     public class TestController : Controller
     {
         private ITestService testService;
+        private long groupId;
 
 
         public TestController(ITestService service)
@@ -43,8 +44,8 @@ namespace student_testing.Controllers
                     DateStart=model.DateStart,
                     DateValid=model.DateValid,
                     Duration=model.Duration,
-                    GroupId=model.GroupId
-                    
+                    GroupId= groupId
+
                 };
                 await testService.CreateTest(testDto);
                 return View();
@@ -54,8 +55,9 @@ namespace student_testing.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        public IActionResult Create()//create test
+        public IActionResult Create(long groupid)//create test
         {
+            groupId = groupid;
             return View();
         }
 
