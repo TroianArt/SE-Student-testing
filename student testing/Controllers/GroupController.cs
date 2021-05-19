@@ -11,6 +11,7 @@ using BLL.DTO;
 using BLL.Interfaces;
 using DAL.Domain;
 using DAL.Interfaces;
+using Serilog;
 
 namespace student_testing.Controllers
 {
@@ -47,6 +48,7 @@ namespace student_testing.Controllers
                     CreatorId = user.Id,
                 };
                 await groupService.CreateGroup(groupDto);
+                Log.Logger.Verbose("Create group: {@groupDto}  ", groupDto);
                 return View();
             }
             return View();

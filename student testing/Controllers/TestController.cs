@@ -9,6 +9,7 @@ using DAL.Domain;
 using BLL.Interfaces;
 using DAL.Interfaces;
 using BLL.DTO;
+using Serilog;
 
 namespace student_testing.Controllers
 {
@@ -48,6 +49,7 @@ namespace student_testing.Controllers
 
                 };
                 await testService.CreateTest(testDto);
+                Log.Logger.Verbose("Create test: {@groupDto}  ", testDto);
                 return View();
             }
             return View();

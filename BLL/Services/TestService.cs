@@ -5,6 +5,7 @@ using BLL.DTO;
 using BLL.Interfaces;
 using DAL.Domain;
 using DAL.Interfaces;
+using Serilog;
 
 namespace BLL.Services
 {
@@ -26,6 +27,7 @@ namespace BLL.Services
                 var testEntity = mapper.Map<Test>(test);
                 await unitOfWork.Repository<Test>().AddAsync(testEntity);
                 await unitOfWork.Repository<Test>().SaveAsync();
+                Log.Logger.Verbose("Create test: {@test}  ", test);
                 return true;
             }
             catch (Exception)
@@ -41,6 +43,7 @@ namespace BLL.Services
                 var testEntity = mapper.Map<Test>(test);
                 unitOfWork.Repository<Test>().Update(testEntity);
                 await unitOfWork.Repository<Test>().SaveAsync();
+                Log.Logger.Verbose("Edit test: {@test}  ", test);
                 return true;
             }
             catch (Exception)
@@ -53,9 +56,11 @@ namespace BLL.Services
         {
             try
             {
+
                 var testEntity = mapper.Map<Test>(test);
                 unitOfWork.Repository<Test>().Delete(testEntity);
                 await unitOfWork.Repository<Test>().SaveAsync();
+                Log.Logger.Verbose("Delete test: {@test}  ", test);
                 return true;
             }
             catch (Exception)
