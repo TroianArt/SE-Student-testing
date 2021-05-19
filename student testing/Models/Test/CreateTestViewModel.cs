@@ -7,5 +7,11 @@ namespace student_testing.Models.Test
 {
     public class CreateTestViewModel
     {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public DateTime DateStart { get; set; }
+        public DateTime DateValid { get; set; }
+        public TimeSpan Duration { get; set; }
+        public long GroupId { get; set; }
     }
 }

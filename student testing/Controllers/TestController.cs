@@ -5,11 +5,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using student_testing.Models.Test;
+using DAL.Domain;
+using BLL.Interfaces;
+using DAL.Interfaces;
+using BLL.DTO;
 
 namespace student_testing.Controllers
 {
     public class TestController : Controller
     {
+        private ITestService testService;
+
+
+        public TestController(ITestService service)
+        {
+            this.testService = service;
+
+        }
         [HttpGet]
         [Authorize]
         public IActionResult Index()//get user tests
@@ -19,8 +31,24 @@ namespace student_testing.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public IActionResult Create(CreateTestViewModel model)//create test
+        public async Task<IActionResult> Create(CreateTestViewModel model)//create test
         {
+            if (this.ModelState.IsValid)
+            {
+                TestDto testDto = new TestDto
+                {
+                    DateCreation = DateTime.Now,
+                    Name= model.Name,
+                    Description=model.Description, 
+                    DateStart=model.DateStart,
+                    DateValid=model.DateValid,
+                    Duration=model.Duration,
+                    GroupId=model.GroupId
+                    
+                };
+                await testService.CreateTest(testDto);
+                return View();
+            }
             return View();
         }
 

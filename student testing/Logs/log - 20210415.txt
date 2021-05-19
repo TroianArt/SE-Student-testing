@@ -4,3 +4,15 @@
 2021-04-15 13:45:37.912 +03:00 [VRB] App starting up
 2021-04-15 13:46:24.252 +03:00 [WRN] Did not register user {"Id":null,"UserName":"User1","Email":"user1@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
 2021-04-15 13:46:39.527 +03:00 [VRB] Registered user {"Id":null,"UserName":"User2","Email":"user2@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
+2021-04-15 17:14:02.445 +03:00 [VRB] App starting up
+2021-04-15 17:14:43.040 +03:00 [VRB] Sign up user {"Id":null,"UserName":"Artur1","Email":"artur1@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
+2021-04-15 17:15:42.195 +03:00 [VRB] App starting up
+2021-04-15 17:16:14.494 +03:00 [VRB] Sign up user {"Id":null,"UserName":"Artur2","Email":"artur2@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
+2021-04-15 17:16:14.497 +03:00 [WRN] Did not register user {"Id":null,"UserName":"Artur2","Email":"artur2@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
+2021-04-15 17:16:43.482 +03:00 [VRB] Sign up user {"Id":null,"UserName":"Artur2","Email":"artur2@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
+2021-04-15 17:16:43.482 +03:00 [WRN] Did not register user {"Id":null,"UserName":"Artur2","Email":"artur2@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
+2021-04-15 17:17:09.203 +03:00 [VRB] Sign up user {"Id":null,"UserName":"Artur3","Email":"artur3@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
+2021-04-15 17:17:09.515 +03:00 [VRB] Add role: BLL.DTO.UserDto , User Student 
+2021-04-15 17:17:09.515 +03:00 [VRB] Registered user {"Id":null,"UserName":"Artur3","Email":"artur3@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
+2021-04-15 17:17:19.428 +03:00 [VRB] Signed in user {"Id":null,"UserName":null,"Email":"artur3@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
+2021-04-15 17:17:19.429 +03:00 [VRB] Logged in user {"Id":null,"UserName":null,"Email":"artur3@gmail.com","UserTests":null,"Answers":null,"Groups":null,"Roles":null,"$type":"UserDto"} 
