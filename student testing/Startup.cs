@@ -42,7 +42,7 @@ namespace student_testing
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IGroupService, GroupService>();
-
+            services.AddScoped<ITestService, TestService>();
             services.AddControllersWithViews();
 
         }
