@@ -32,7 +32,7 @@ namespace student_testing.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(CreateTestViewModel model)//create test
         {
             if (this.ModelState.IsValid)
@@ -77,16 +77,17 @@ namespace student_testing.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         [Authorize]
-        public IActionResult Start(int id)//get user tests
+        public IActionResult Take(int id)//get user tests
         {
+            int a = id;
             return View();
         }
 
         [HttpPost]
         [Authorize]
-        public IActionResult Complete(int id)//get user tests
+        public IActionResult Take(int id, TakeTestViewModel model)//get user tests
         {
             return View();
         }
