@@ -32,7 +32,7 @@ namespace student_testing.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "Student")]
         public async Task<IActionResult> Create(CreateTestViewModel model)//create test
         {
             if (this.ModelState.IsValid)
@@ -45,7 +45,7 @@ namespace student_testing.Controllers
                     DateStart=model.DateStart,
                     DateValid=model.DateValid,
                     Duration=model.Duration,
-                    GroupId= groupId
+                    GroupId= model.GroupId
 
                 };
                 await testService.CreateTest(testDto);
@@ -56,7 +56,7 @@ namespace student_testing.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Student")]
         public IActionResult Create(long groupid)//create test
         {
             groupId = groupid;

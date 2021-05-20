@@ -34,7 +34,7 @@ namespace student_testing.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "Student")]
         public async Task<IActionResult> Create(CreateGroupViewModel model) //create new group
         {
             if (this.ModelState.IsValid)
@@ -55,7 +55,7 @@ namespace student_testing.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "Student")]
         public IActionResult Create() //create new group
         {
             return View();

@@ -30,8 +30,9 @@ namespace BLL.Services
                 Log.Logger.Verbose("Create test: {@test}  ", test);
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                String Message = e.Message;
                 return false;
             }
         }

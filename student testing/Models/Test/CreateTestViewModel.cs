@@ -12,6 +12,6 @@ namespace student_testing.Models.Test
         public DateTime DateStart { get; set; }
         public DateTime DateValid { get; set; }
         public TimeSpan Duration { get; set; }
-        public long GroupId { get; set; }
+        public int GroupId { get; set; }
     }
 }
