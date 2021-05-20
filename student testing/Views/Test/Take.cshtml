@@ -1,5 +1,37 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using System.Collections.Generic;
+<body>
+
+    <div>
+        @{
+
+                <form asp-controller="Test" asp-action="Submit" asp-route-id="@ViewBag.TestId" enctype="multipart/form-data">
+                    <ol>
+                        @if (ViewBag.Questions != null)
+                        {
+                        @foreach (var q in ViewBag.Questions)
+                        {
+                            <li>
+                                <div>
+                                    <h3>@q.Key</h3>
+                                    <p>Answers:</p>
+                                    <ol>
+                                        @foreach (var o in q.Value)
+                                        {
+                                        <li>
+                                            <input type="checkbox" />
+                                            <p>@o</p>
+                                        </li>
+                                        }
+                                    </ol>
+                                </div>
+                            </li>
+                        }
+                        }
+                    </ol>
+                    <div class="form-group">
+                        <input type="submit" value="Submit" />
+                    </div>
+                </form>
+        }
+    </div>
+</body>

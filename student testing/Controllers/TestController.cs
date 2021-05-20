@@ -81,13 +81,25 @@ namespace student_testing.Controllers
         [Authorize]
         public IActionResult Take(int id)//get user tests
         {
+            Dictionary<string, List<string>> q = new Dictionary<string, List<string>>();
+            if (id == 1)
+            {
+                q.Add("Question", new List<string> { "a", "b", "c" });
+                q.Add("Question1", new List<string> { "a", "b", "c" });
+                q.Add("Question2", new List<string> { "a", "b", "c" });
+                q.Add("Question3", new List<string> { "a", "b", "c" });
+                q.Add("Question4", new List<string> { "a", "b", "c" });
+            }
+            ViewBag.Questions = q;
+            ViewBag.TestId = id;
             return View();
         }
 
         [HttpPost]
         [Authorize]
-        public IActionResult Take(int id, TestViewModel model)//get user tests
+        public IActionResult Submit(int id)//get user tests
         {
+            int b = id;
             return View();
         }
 
