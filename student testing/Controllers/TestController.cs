@@ -32,7 +32,7 @@ namespace student_testing.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Teacher")]
         public async Task<IActionResult> Create(CreateTestViewModel model)//create test
         {
             if (this.ModelState.IsValid)

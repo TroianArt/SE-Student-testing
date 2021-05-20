@@ -54,6 +54,26 @@ namespace BLL.Services
             return result;
         }
 
+        public async Task<IdentityResult> ChageRole(string email, string role)
+        {
+            var userEntity = unitOfWork.UserManager.FindByEmailAsync(email);
+            if (userEntity == null)
+            {
+                Log.Logger.Warning("Not found user with email: {email} ", email);
+                return null;
+            }
+
+            bool roleExists = await unitOfWork.RoleManager.RoleExistsAsync(role);
+            if (!roleExists && Array.Exists(roles, element => element == role))
+            {
+                await unitOfWork.RoleManager.CreateAsync(new Role(role));
+            }
+
+            var result = await unitOfWork.UserManager.AddToRoleAsync(userEntity.Result, role);
+            Log.Logger.Verbose("Add role: {role} , User {@userdto} ", email, role);
+            return result;
+        }
+
         public async Task<SignInResult> SignInAsync(UserDto user, string password, bool isPersistant)
         {
             //var userEntity = mapper.Map<User>(user);
