@@ -77,16 +77,16 @@ namespace student_testing.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         [Authorize]
-        public IActionResult Start(int id)//get user tests
+        public IActionResult Take(int id)//get user tests
         {
             return View();
         }
 
         [HttpPost]
         [Authorize]
-        public IActionResult Complete(int id)//get user tests
+        public IActionResult Take(int id, TestViewModel model)//get user tests
         {
             return View();
         }
